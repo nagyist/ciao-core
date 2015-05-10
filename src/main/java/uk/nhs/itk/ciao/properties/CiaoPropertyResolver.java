@@ -6,12 +6,10 @@ import java.util.Properties;
 
 import org.apache.camel.CamelContext;
 import org.apache.camel.component.properties.PropertiesComponent;
-import org.apache.camel.component.properties.PropertiesFunction;
 import org.apache.camel.component.properties.PropertiesResolver;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import uk.nhs.itk.ciao.CIP;
 import uk.nhs.itk.ciao.configuration.CIAOConfig;
 import uk.nhs.itk.ciao.exceptions.CIAOConfigurationException;
 
@@ -73,7 +71,7 @@ public final class CiaoPropertyResolver
 		InputStream in = null;
 		Properties defaultProperties = new Properties();
         try {
-        	in = CIP.class.getClassLoader().getResourceAsStream(defaultConfigFileName);
+        	in = CiaoPropertyResolver.class.getClassLoader().getResourceAsStream(defaultConfigFileName);
             if (in != null) {
             	defaultProperties.load(in);
             	in.close();
