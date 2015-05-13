@@ -1,8 +1,5 @@
 package uk.nhs.itk.ciao;
 
-import javax.naming.Context;
-import javax.naming.NamingException;
-
 import org.apache.camel.CamelContext;
 import org.apache.camel.Exchange;
 import org.apache.camel.impl.DefaultCamelContext;
@@ -17,7 +14,7 @@ import uk.nhs.itk.ciao.properties.CiaoPropertyResolver;
  */
 public abstract class RunCIP {
 	
-	private static Logger logger = LoggerFactory.getLogger(CIP.class);
+	private static Logger logger = LoggerFactory.getLogger(RunCIP.class);
 	
 	public CamelContext init(String[] args, String defaultConfigFile) throws Exception {
 		try {
