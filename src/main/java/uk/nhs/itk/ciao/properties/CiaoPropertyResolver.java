@@ -21,27 +21,6 @@ public final class CiaoPropertyResolver
 	private static String version = null;
 	private static String cipName = null;
 	private static Logger logger = LoggerFactory.getLogger(CiaoPropertyResolver.class);
-	//private final PropertiesComponent propertiesComponent;
-	
-	/*
-	public String apply(String key) {
-		try {
-			logger.info("*********** Called config 'apply' for key {}", key);
-			return cipConfig.getConfigValue(key);
-		} catch (CIAOConfigurationException e) {
-			logger.error("Unable to retrieve configuration value for key: {}", key);
-			return null;
-		}
-	}
-
-	public String getName() {
-		return "ciaoConfig";
-	}*/
-
-	/*
-	public CiaoPropertyResolver(PropertiesComponent propertiesComponent) {
-		this.propertiesComponent = propertiesComponent;
-	}*/
 	
 	public Properties resolveProperties(CamelContext arg0, boolean arg1,
 			String... arg2) throws Exception {
@@ -49,7 +28,7 @@ public final class CiaoPropertyResolver
 		return cipConfig.getAllProperties();
 	}
 	
-	public static void createPropertiesComponent(String defaultConfigFileName, String[] args, CamelContext context) throws CIAOConfigurationException {
+	public static PropertiesComponent createPropertiesComponent(String defaultConfigFileName, String[] args) throws CIAOConfigurationException {
 		if (cipConfig != null) {
 			throw new CIAOConfigurationException("Attempting to initialise CIP configuration more than once - this is not allowed");
 		} else {
@@ -57,13 +36,13 @@ public final class CiaoPropertyResolver
 			version = defaultConfig.get("cip.version").toString();
 			cipName = defaultConfig.get("cip.name").toString();
 			cipConfig = new CIAOConfig(args, cipName, version, defaultConfig);
-			logger.info("Initialised CIP config");
+			logger.info("Initialised CIP configuration");
 			logger.info("CIP config values: {}", cipConfig.toString());
 			PropertiesComponent pc = new PropertiesComponent();
 			pc.setPropertiesResolver(new CiaoPropertyResolver());
 			//pc.addFunction(new CiaoPropertyResolver());
 			pc.setLocation("DUMMYLOCATION");
-			context.addComponent("properties", pc);
+			return pc;
 		}
 	}
 	
@@ -88,5 +67,19 @@ public final class CiaoPropertyResolver
             }
         }
         return defaultProperties;
+	}
+	
+	/**
+	 * Convenience method to directly access a config value from CIP code
+	 * @param key
+	 * @return
+	 * @throws CIAOConfigurationException 
+	 */
+	public static String getConfigValue(String key) throws CIAOConfigurationException {
+		if (cipConfig == null) {
+			throw new CIAOConfigurationException("CIAO Configuration has not yet been initialised!");
+		} else {
+			return cipConfig.getConfigValue(key);
+		}
 	}
 }

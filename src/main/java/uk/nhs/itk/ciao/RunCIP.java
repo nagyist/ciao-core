@@ -2,6 +2,7 @@ package uk.nhs.itk.ciao;
 
 import org.apache.camel.CamelContext;
 import org.apache.camel.Exchange;
+import org.apache.camel.component.properties.PropertiesComponent;
 import org.apache.camel.impl.DefaultCamelContext;
 import org.apache.camel.util.jndi.JndiContext;
 import org.slf4j.Logger;
@@ -18,21 +19,19 @@ public abstract class RunCIP {
 	
 	public CamelContext init(String[] args, String defaultConfigFile) throws Exception {
 		try {
-			// Initialise CIP config
-			//Properties defaultConfig = loadDefaultConfig();
-			//String version = defaultConfig.get("cip.version").toString();
-			//String cipName = defaultConfig.get("cip.name").toString();
-			//CIAOConfig cipConfig = new CIAOConfig(args, cipName, version, defaultConfig);
-			
 			// Create a new JNDI context as our camel registry
 			JndiContext jndi = new JndiContext();
+			
+			// Initialise CIP config
+			PropertiesComponent pc = CiaoPropertyResolver
+						.createPropertiesComponent(defaultConfigFile, args);
+			
 			// Add bean mappings
 			populateCamelRegistry(jndi);
 			
 			CamelContext context = new DefaultCamelContext(jndi);		
-			
 			// Add our custom property resolver
-			CiaoPropertyResolver.createPropertiesComponent(defaultConfigFile, args, context);
+			context.addComponent("properties", pc);			
 			
 			// Set some other global values
 			context.setStreamCaching(true);
