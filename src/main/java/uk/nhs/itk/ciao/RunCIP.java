@@ -55,9 +55,9 @@ public abstract class RunCIP {
 	/**
 	 * Register our custom beans using JNDI (in an OSGi deployment this is configured in beans.xml) 
 	 * @param jndi
-	 * @throws NamingException
+	 * @throws Exception
 	 */
-	protected void populateCamelRegistry(JndiContext jndi) throws NamingException {
+	protected void populateCamelRegistry(JndiContext jndi) throws Exception {
 		
 	};
 	
