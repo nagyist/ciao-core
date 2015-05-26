@@ -13,6 +13,10 @@ import org.slf4j.LoggerFactory;
 import uk.nhs.ciao.configuration.CIAOConfig;
 import uk.nhs.ciao.exceptions.CIAOConfigurationException;
 
+/**
+ * @deprecated see {@link uk.nhs.ciao.spring.CiaoParentApplicationContextFactory} and standard spring<->camel bindings
+ */
+@Deprecated
 public final class CiaoPropertyResolver 
 		implements PropertiesResolver {
 	

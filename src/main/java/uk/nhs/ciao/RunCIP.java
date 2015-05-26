@@ -12,6 +12,8 @@ import uk.nhs.ciao.properties.CiaoPropertyResolver;
 
 /** 
  * @author Adam Hatherly
+ * 
+ * @deprecated Can replace with spring config and {@link uk.nhs.ciao.camel.CamelApplication}
  */
 public abstract class RunCIP {
 	
