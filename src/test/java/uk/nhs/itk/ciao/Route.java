@@ -2,6 +2,8 @@ package uk.nhs.itk.ciao;
 
 import org.apache.camel.PropertyInject;
 
+import uk.nhs.ciao.CIPRoutes;
+
 /**
  * This is a sample CIP route for the purpose of unit testing.
  * @author Adam Hatherly

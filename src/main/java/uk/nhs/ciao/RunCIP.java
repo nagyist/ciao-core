@@ -1,4 +1,4 @@
-package uk.nhs.itk.ciao;
+package uk.nhs.ciao;
 
 import org.apache.camel.CamelContext;
 import org.apache.camel.Exchange;
@@ -8,7 +8,7 @@ import org.apache.camel.util.jndi.JndiContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import uk.nhs.itk.ciao.properties.CiaoPropertyResolver;
+import uk.nhs.ciao.properties.CiaoPropertyResolver;
 
 /** 
  * @author Adam Hatherly

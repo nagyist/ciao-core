@@ -1,4 +1,4 @@
-package uk.nhs.itk.ciao.properties;
+package uk.nhs.ciao.properties;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -10,8 +10,8 @@ import org.apache.camel.component.properties.PropertiesResolver;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import uk.nhs.itk.ciao.configuration.CIAOConfig;
-import uk.nhs.itk.ciao.exceptions.CIAOConfigurationException;
+import uk.nhs.ciao.configuration.CIAOConfig;
+import uk.nhs.ciao.exceptions.CIAOConfigurationException;
 
 public final class CiaoPropertyResolver 
 		implements PropertiesResolver {

@@ -5,6 +5,8 @@ import javax.naming.NamingException;
 import org.apache.camel.CamelContext;
 import org.apache.camel.util.jndi.JndiContext;
 
+import uk.nhs.ciao.RunCIP;
+
 /**
  * This is a sample CIP implementation for the purposes of unit testing.
  * @author Adam Hatherly
