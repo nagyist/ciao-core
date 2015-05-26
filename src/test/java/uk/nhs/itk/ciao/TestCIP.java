@@ -56,7 +56,7 @@ public class TestCIP extends CamelTestSupport {
 		
 		Thread.sleep(500);
 		// Submit request
-		template.sendBodyAndHeader("jetty:http://0.0.0.0:8080/test",
+		template.sendBodyAndHeader("jetty:http://0.0.0.0:8765/test",
 						ExchangePattern.InOut, "", Exchange.HTTP_METHOD, "GET");
 		
 		boolean matches = notify.matches(5, TimeUnit.SECONDS);

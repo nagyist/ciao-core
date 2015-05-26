@@ -17,7 +17,7 @@ public class Route extends CIPRoutes {
 	 */
 	@Override
 	public void configure() {
-		from("jetty:http://0.0.0.0:8080/test?traceEnabled=true").routeId("testRouteHTTP")
+		from("jetty:http://0.0.0.0:8765/test?traceEnabled=true").routeId("testRouteHTTP")
 			.log("***** Config value = {{ConfigValue}} *****")
 			.to("bean:loggingBean?method=logValue({{ConfigValue}})");
 		super.configure();
