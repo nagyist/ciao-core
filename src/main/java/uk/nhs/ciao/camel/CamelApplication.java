@@ -21,7 +21,7 @@ import uk.nhs.ciao.spring.CiaoParentApplicationContextFactory;
  * of {@link org.apache.camel.spring.spi.BridgePropertyPlaceholderConfigurer}
  * should be registered in the XML configuration.
  * 
- * @see CamelMain
+ * @see CamelApplicationRunner
  */
 public class CamelApplication {
 	private static final Logger LOGGER = LoggerFactory.getLogger(CamelApplication.class);
@@ -50,7 +50,7 @@ public class CamelApplication {
 	private final Object lock = new Object();
 	private final CIAOConfig config;
 	private final String[] arguments;
-	private CamelMain main;
+	private CamelApplicationRunner main;
 
 	/**
 	 * Creates a new application backed by the specified CIAO configuration
@@ -93,12 +93,12 @@ public class CamelApplication {
 	}
 	
 	/**
-	 * Starts the application
+	 * Runs the application
 	 */
-	public CamelMain start() throws Exception {
+	public CamelApplicationRunner run() throws Exception {
 		synchronized (lock) {
 			if (main == null) {
-				main = CamelMain.startApplication(this);
+				main = CamelApplicationRunner.runApplication(this);
 			}
 		}
 		

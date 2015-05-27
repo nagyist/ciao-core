@@ -15,18 +15,18 @@ import uk.nhs.ciao.exceptions.CIAOConfigurationException;
  * @see Main
  * @see CamelApplication#createParentApplicationContext()
  */
-public class CamelMain extends Main {
-	private static CamelMain instance;
+public class CamelApplicationRunner extends Main {
+	private static CamelApplicationRunner instance;
 	
 	/**
-	 * Starts a new camel application
+	 * Runs the specified camel application
 	 * 
 	 * @param config The CIAO configuration used by the application
 	 * @param args The application arguments
 	 * @throws Exception If the application could not be started
 	 */
-	public static CamelMain startApplication(final CamelApplication application) throws Exception {
-        final CamelMain main = new CamelMain(application);
+	public static CamelApplicationRunner runApplication(final CamelApplication application) throws Exception {
+        final CamelApplicationRunner main = new CamelApplicationRunner(application);
         Main.instance = main;
         instance = main;
         main.enableHangupSupport();
@@ -40,7 +40,7 @@ public class CamelMain extends Main {
 	 * 
 	 * @see Main#getInstance()
 	 */
-	public static CamelMain getInstance() {
+	public static CamelApplicationRunner getInstance() {
 		return instance;
 	}
 	
@@ -49,7 +49,7 @@ public class CamelMain extends Main {
 	/**
 	 * Creates a new main to run the specified application
 	 */
-	public CamelMain(final CamelApplication application) {
+	public CamelApplicationRunner(final CamelApplication application) {
 		super();
 		this.application = application;
 	}
