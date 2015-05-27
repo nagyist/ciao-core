@@ -47,10 +47,8 @@ public class CamelApplication {
 				CIAOConfig.class);
 	}
 	
-	private final Object lock = new Object();
 	private final CIAOConfig config;
 	private final String[] arguments;
-	private CamelApplicationRunner main;
 
 	/**
 	 * Creates a new application backed by the specified CIAO configuration
@@ -90,19 +88,6 @@ public class CamelApplication {
 	 */
 	public String[] getArguments() {
 		return arguments;
-	}
-	
-	/**
-	 * Runs the application
-	 */
-	public CamelApplicationRunner run() throws Exception {
-		synchronized (lock) {
-			if (main == null) {
-				main = CamelApplicationRunner.runApplication(this);
-			}
-		}
-		
-		return main;
 	}
 	
 	/**
