@@ -2,11 +2,7 @@ package uk.nhs.ciao.spring;
 
 import java.util.Properties;
 
-import org.springframework.beans.factory.config.BeanDefinition;
-import org.springframework.beans.factory.config.ConstructorArgumentValues;
-import org.springframework.beans.factory.support.RootBeanDefinition;
 import org.springframework.context.ConfigurableApplicationContext;
-import org.springframework.context.support.AbstractApplicationContext;
 import org.springframework.context.support.StaticApplicationContext;
 import org.springframework.core.env.PropertySource;
 
@@ -49,7 +45,7 @@ public class CiaoParentApplicationContextFactory {
 	 * @return A CIAO parent application context
 	 * @throws CIAOConfigurationException If the CIAO properties could not be loaded
 	 */
-	public AbstractApplicationContext createParentApplicationContext() throws CIAOConfigurationException {
+	public StaticApplicationContext createParentApplicationContext() throws CIAOConfigurationException {
 		final StaticApplicationContext parentContext = new StaticApplicationContext();
 		
 		registerEnvironmentPropertySource(parentContext);
@@ -71,22 +67,9 @@ public class CiaoParentApplicationContextFactory {
 	 */
 	private void registerPropertiesBeans(final StaticApplicationContext parentContext)
 			throws CIAOConfigurationException {
-		parentContext.registerBeanDefinition(PROPERTY_CIAO_CONFIG, defineSingletonBean(CIAOConfig.class, config));
-		parentContext.registerBeanDefinition(PROPERTY_CIAO_PROPERTIES, defineSingletonBean(Properties.class,
-				config.getAllProperties()));
-	}
-	
-	/**
-	 * Utility method to create a spring bean definition which will always return the
-	 * specified instance
-	 */
-	private <T> BeanDefinition defineSingletonBean(final Class<T> objectType, final T object) {
-		final RootBeanDefinition def = new RootBeanDefinition(SingletonFactoryBean.class);
-		
-		final ConstructorArgumentValues constructorArgumentValues = new ConstructorArgumentValues();
-		constructorArgumentValues.addIndexedArgumentValue(0, objectType);
-		constructorArgumentValues.addIndexedArgumentValue(1, object);
-		def.setConstructorArgumentValues(constructorArgumentValues);
-		return def;
+		parentContext.registerBeanDefinition(PROPERTY_CIAO_CONFIG, SingletonFactoryBean.defineSingletonBean(
+				CIAOConfig.class, config));
+		parentContext.registerBeanDefinition(PROPERTY_CIAO_PROPERTIES, SingletonFactoryBean.defineSingletonBean(
+				Properties.class, config.getAllProperties()));
 	}
 }

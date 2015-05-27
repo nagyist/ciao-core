@@ -1,6 +1,9 @@
 package uk.nhs.ciao.spring;
 
 import org.springframework.beans.factory.FactoryBean;
+import org.springframework.beans.factory.config.BeanDefinition;
+import org.springframework.beans.factory.config.ConstructorArgumentValues;
+import org.springframework.beans.factory.support.RootBeanDefinition;
 
 /**
  * Utility factory bean which always returns a pre-configured
@@ -42,5 +45,19 @@ public class SingletonFactoryBean<T> implements FactoryBean<T> {
 	@Override
 	public Class<?> getObjectType() {
 		return objectType;
+	}
+	
+	/**
+	 * Utility method to create a spring bean definition which will always return the
+	 * specified instance
+	 */
+	public static <T> BeanDefinition defineSingletonBean(final Class<T> objectType, final T object) {
+		final RootBeanDefinition def = new RootBeanDefinition(SingletonFactoryBean.class);
+		
+		final ConstructorArgumentValues constructorArgumentValues = new ConstructorArgumentValues();
+		constructorArgumentValues.addIndexedArgumentValue(0, objectType);
+		constructorArgumentValues.addIndexedArgumentValue(1, object);
+		def.setConstructorArgumentValues(constructorArgumentValues);
+		return def;
 	}
 }
