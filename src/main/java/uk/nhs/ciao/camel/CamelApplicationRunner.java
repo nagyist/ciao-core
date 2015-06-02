@@ -26,6 +26,11 @@ import uk.nhs.ciao.exceptions.CIAOConfigurationException;
 public class CamelApplicationRunner extends Main {
 	private static final Logger LOGGER = LoggerFactory.getLogger(CamelApplicationRunner.class);
 	
+	/**
+	 * The default path of the spring application context resource to load
+	 */
+	public static final String DEFAULT_APPLICATION_CONTEXT_URI = "META-INF/spring/beans.xml";
+	
 	private static volatile CamelApplicationRunner instance;
 	
 	/**
@@ -65,7 +70,8 @@ public class CamelApplicationRunner extends Main {
 	 * @param executorService The executorService to use when running the application
 	 * @return The async execution associated with the running application
 	 */
-	public static AsyncExecution runApplication(final CamelApplication application, final ExecutorService executorService) throws Exception {
+	public static AsyncExecution runApplication(final CamelApplication application,
+			final ExecutorService executorService) throws Exception {
 		// A reference to the runner - all construction is handled in the worker thread
 		final AtomicReference<CamelApplicationRunner> runnerRef = new AtomicReference<CamelApplicationRunner>();
 		
@@ -88,7 +94,8 @@ public class CamelApplicationRunner extends Main {
 			@Override
 			public Void call() throws Exception {
 				try {
-					final CamelApplicationRunner main = new CamelApplicationRunner(application, lifecycleListener);
+					final CamelApplicationRunner main = new CamelApplicationRunner(application,
+							lifecycleListener);
 					runnerRef.set(main);
 			        Main.instance = main;
 			        instance = main;
@@ -215,6 +222,10 @@ public class CamelApplicationRunner extends Main {
 		super();
 		this.application = application;
 		this.lifecycleListener = lifecycleListener;
+		
+		// The default wild-card expression can make the loading of a main file
+		// unpredictable (especially with a test classpath)
+		setApplicationContextUri(DEFAULT_APPLICATION_CONTEXT_URI);
 	}
 	
 	/**
