@@ -26,11 +26,6 @@ import uk.nhs.ciao.exceptions.CIAOConfigurationException;
 public class CamelApplicationRunner extends Main {
 	private static final Logger LOGGER = LoggerFactory.getLogger(CamelApplicationRunner.class);
 	
-	/**
-	 * The default path of the spring application context resource to load
-	 */
-	public static final String DEFAULT_APPLICATION_CONTEXT_URI = "META-INF/spring/beans.xml";
-	
 	private static volatile CamelApplicationRunner instance;
 	
 	/**
@@ -223,9 +218,7 @@ public class CamelApplicationRunner extends Main {
 		this.application = application;
 		this.lifecycleListener = lifecycleListener;
 		
-		// The default wild-card expression can make the loading of a main file
-		// unpredictable (especially with a test classpath)
-		setApplicationContextUri(DEFAULT_APPLICATION_CONTEXT_URI);
+		setApplicationContextUri(application.getApplicationContextUri());
 	}
 	
 	/**

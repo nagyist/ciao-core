@@ -27,6 +27,11 @@ public class CamelApplication {
 	private static final Logger LOGGER = LoggerFactory.getLogger(CamelApplication.class);
 	
 	/**
+	 * The default path of the spring application context resource to load
+	 */
+	public static final String DEFAULT_APPLICATION_CONTEXT_URI = "META-INF/spring/beans.xml";
+	
+	/**
 	 * Gets the CIAOConfig from the specified camel context
 	 * 
 	 * @return The configuration stored in the context's registry
@@ -49,6 +54,7 @@ public class CamelApplication {
 	
 	private final CIAOConfig config;
 	private final String[] arguments;
+	private String applicationContextUri = DEFAULT_APPLICATION_CONTEXT_URI;
 
 	/**
 	 * Creates a new application backed by the specified CIAO configuration
@@ -88,6 +94,24 @@ public class CamelApplication {
 	 */
 	public String[] getArguments() {
 		return arguments;
+	}
+	
+	/**
+	 * The path of the spring application context config for this application
+	 * 
+	 * @see #DEFAULT_APPLICATION_CONTEXT_URI
+	 */
+	public String getApplicationContextUri() {
+		return applicationContextUri;
+	}
+	
+	/**
+	 * Sets the path of the spring application context config for this application
+	 * <p>
+	 * protected access - intended for subclasses only
+	 */
+	protected void setApplicationContextUri(final String applicationContextUri) {
+		this.applicationContextUri = applicationContextUri;
 	}
 	
 	/**
