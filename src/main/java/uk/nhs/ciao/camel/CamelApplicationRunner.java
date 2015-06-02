@@ -1,7 +1,9 @@
 package uk.nhs.ciao.camel;
 
+import java.util.concurrent.Callable;
 import java.util.concurrent.CountDownLatch;
-import java.util.concurrent.ThreadFactory;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Future;
 import java.util.concurrent.atomic.AtomicReference;
 
 import org.apache.camel.spring.Main;
@@ -51,23 +53,27 @@ public class CamelApplicationRunner extends Main {
     }
 	
 	/**
-	 * Runs the specified camel application in a new thread
+	 * Runs the specified camel application via an executor
 	 * <p>
 	 * The application will run without hang-up support enabled
 	 * <p>
-	 * This method will return once the application has started unless an exception is thrown. The CamelApplication
-	 * instance can be found via {@link #getInstance()} after this method successfully completes.
+	 * This method will return once the application has started unless an exception is thrown. The returned
+	 * AsyncExecution can be used to examine/stop the application or to examine exception thrown after
+	 * the application started
 	 * 
 	 * @param application The application to run
-	 * @param threadFactory The thread factory used to spawn a new thread
-	 * @return The thread that was created
+	 * @param executorService The executorService to use when running the application
+	 * @return The async execution associated with the running application
 	 */
-	public static Thread runApplication(final CamelApplication application, final ThreadFactory threadFactory) throws Exception {
-		// Block until either an exception is thrown or the application has started
-		final CountDownLatch latch = new CountDownLatch(1);
+	public static AsyncExecution runApplication(final CamelApplication application, final ExecutorService executorService) throws Exception {
+		// A reference to the runner - all construction is handled in the worker thread
+		final AtomicReference<CamelApplicationRunner> runnerRef = new AtomicReference<CamelApplicationRunner>();
 		
 		// If an exception is thrown - marshal it into the calling thread
-		final AtomicReference<Throwable> causeReference = new AtomicReference<Throwable>();
+		final AtomicReference<Throwable> causeRef = new AtomicReference<Throwable>();
+		
+		// Block until either an exception is thrown or the application has started
+		final CountDownLatch latch = new CountDownLatch(1);
 		
 		// Watches for application started
 		final LifecycleListener lifecycleListener = new LifecycleListener() {
@@ -78,40 +84,82 @@ public class CamelApplicationRunner extends Main {
 		};
 		
 		// Task to run the application
-		final Runnable runnable = new Runnable() {			
+		final Callable<Void> task = new Callable<Void>() {			
 			@Override
-			public void run() {
+			public Void call() throws Exception {
 				try {
 					final CamelApplicationRunner main = new CamelApplicationRunner(application, lifecycleListener);
+					runnerRef.set(main);
 			        Main.instance = main;
 			        instance = main;
 			        main.run(application.getArguments());
 		        } catch (Throwable e) {
 		        	LOGGER.error("Exception while running CamelApplication", e);
-		        	causeReference.set(e);
+		        	causeRef.set(e);
 		        	latch.countDown();
+		        	
+		        	throw exception(e);
 		        }
 		        finally {
 		        	Main.instance = null;
 		        	instance = null;
 		        }
+				
+				return null;
 			}
 		};
 		
 		// Start the application
-		final Thread thread = threadFactory.newThread(runnable);
-		thread.start();
+		final Future<Void> future = executorService.submit(task);
 		
 		// Wait until running or failure (whichever comes first)
 		latch.await();
 		
-		final Throwable cause = causeReference.get();
-		if (cause == null) {
-			return thread;
-		} else if (cause instanceof Exception) {
-			throw (Exception)cause;
+		final Throwable cause = causeRef.get();
+		if (cause != null) {
+			throw exception(cause);
+		}
+
+		return new AsyncExecution(runnerRef.get(), future);
+	}
+	
+	/**
+	 * Represents the execution of a camel application in another thread
+	 */
+	public static class AsyncExecution {
+		private final CamelApplicationRunner runner;
+		private final Future<Void> future;
+		
+		private AsyncExecution(final CamelApplicationRunner runner, final Future<Void> future) {
+			this.runner = runner;
+			this.future = future;
+		}
+		
+		/**
+		 * The application runner
+		 */
+		public CamelApplicationRunner getRunner() {
+			return runner;
+		}
+		
+		/**
+		 * The future associated with the aync execution.
+		 * <p>
+		 * The future can be examined to see whether the application is running,
+		 * wait for termination, or retrieve application excceptions that were thrown
+		 * during the run
+		 */
+		public Future<Void> getFuture() {
+			return future;
+		}
+	}
+	
+	// a little syntactic sugar to simplify re-throwing Throwables
+	private static Exception exception(final Throwable throwable) {
+		if (throwable instanceof Exception) {
+			return (Exception)throwable;
 		} else {
-			throw (Error)cause;
+			throw (Error)throwable;
 		}
 	}
 	
