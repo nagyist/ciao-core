@@ -3,21 +3,20 @@ package uk.nhs.ciao.logging;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+/**
+ * Logger to write {@link LogMessage}s at the specified logging level.
+ * <p>
+ * Instances of CiaoLogger delegate calls to the underlying SLF4J {@link Logger},
+ * while allowing the {@link LogMessage} implementation to provide standardised
+ * formatting of the output text.
+ * <p>
+ * A {@link LogMessage} can be obtained via {@link CiaoLogMessage#logMsg(CharSequence)}.
+ */
 public class CiaoLogger {
 	private final Logger logger;
 	
 	private CiaoLogger(final Logger logger) {
 		this.logger = logger;
-	}
-	
-	public boolean isEnabled(final LogLevel level) {
-		return level.isEnabled(logger);
-	}
-	
-	public void log(final LogLevel level, final LogMessage message) {
-		if (level.isEnabled(logger)) {
-			level.log(logger, message.toString());
-		}
 	}
 	
 	public boolean isDebugEnabled() {
@@ -27,6 +26,12 @@ public class CiaoLogger {
 	public void debug(final LogMessage message) {
 		if (logger.isDebugEnabled()) {
 			logger.debug(message.toString());
+		}
+	}
+	
+	public void debug(final LogMessage message, final Throwable throwable) {
+		if (logger.isDebugEnabled()) {
+			logger.debug(message.toString(), throwable);
 		}
 	}
 	
@@ -40,6 +45,12 @@ public class CiaoLogger {
 		}
 	}
 	
+	public void error(final LogMessage message, final Throwable throwable) {
+		if (logger.isErrorEnabled()) {
+			logger.error(message.toString(), throwable);
+		}
+	}
+	
 	public boolean isInfoEnabled() {
 		return logger.isInfoEnabled();
 	}
@@ -47,6 +58,12 @@ public class CiaoLogger {
 	public void info(final LogMessage message) {
 		if (logger.isInfoEnabled()) {
 			logger.info(message.toString());
+		}
+	}
+	
+	public void info(final LogMessage message, final Throwable throwable) {
+		if (logger.isInfoEnabled()) {
+			logger.info(message.toString(), throwable);
 		}
 	}
 	
@@ -60,6 +77,13 @@ public class CiaoLogger {
 		}
 	}
 	
+	
+	public void trace(final LogMessage message, final Throwable throwable) {
+		if (logger.isTraceEnabled()) {
+			logger.trace(message.toString(), throwable);
+		}
+	}
+	
 	public boolean isWarnEnabled() {
 		return logger.isWarnEnabled();
 	}
@@ -67,6 +91,12 @@ public class CiaoLogger {
 	public void warn(final LogMessage message) {
 		if (logger.isWarnEnabled()) {
 			logger.warn(message.toString());
+		}
+	}
+	
+	public void warn(final LogMessage message, final Throwable throwable) {
+		if (logger.isWarnEnabled()) {
+			logger.warn(message.toString(), throwable);
 		}
 	}
 	
