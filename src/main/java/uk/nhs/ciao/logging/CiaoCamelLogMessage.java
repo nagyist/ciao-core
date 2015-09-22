@@ -131,4 +131,84 @@ public class CiaoCamelLogMessage extends CamelLogMessage {
 	public CiaoCamelLogMessage fileName(final Expression expression) {
 		return set(FILE_NAME, expression);
 	}
+	
+	public CiaoCamelLogMessage uri(final String expression) {
+		return set(URI, expression);
+	}
+	
+	public CiaoCamelLogMessage uri(final Expression expression) {
+		return set(URI, expression);
+	}
+	
+	public CiaoCamelLogMessage action(final String expression) {
+		return set(ACTION, expression);
+	}
+	
+	public CiaoCamelLogMessage action(final Expression expression) {
+		return set(ACTION, expression);
+	}
+	
+	public CiaoCamelLogMessage service(final String expression) {
+		return set(SERVICE, expression);
+	}
+	
+	public CiaoCamelLogMessage service(final Expression expression) {
+		return set(SERVICE, expression);
+	}
+	
+	public CiaoCamelLogMessage asid(final String expression) {
+		return set(ASID, expression);
+	}
+	
+	public CiaoCamelLogMessage asid(final Expression expression) {
+		return set(ASID, expression);
+	}
+	
+	public CiaoCamelLogMessage odsCode(final String expression) {
+		return set(ODS_CODE, expression);
+	}
+	
+	public CiaoCamelLogMessage odsCode(final Expression expression) {
+		return set(ODS_CODE, expression);
+	}
+	
+	public CiaoCamelLogMessage key(final String expression) {
+		return set(KEY, expression);
+	}
+	
+	public CiaoCamelLogMessage key(final Expression expression) {
+		return set(KEY, expression);
+	}
+	
+	public CiaoCamelLogMessage address(final String expression) {
+		return set(ADDRESS, expression);
+	}
+	
+	public CiaoCamelLogMessage address(final Expression expression) {
+		return set(ADDRESS, expression);
+	}
+	
+	public CiaoCamelLogMessage soapAction(final String expression) {
+		return set(SOAP_ACTION, expression);
+	}
+	
+	public CiaoCamelLogMessage soapAction(final Expression expression) {
+		return set(SOAP_ACTION, expression);
+	}
+	
+	public CiaoCamelLogMessage itkTrackingId(final String expression) {
+		return set(ITK_TRACKING_ID, expression);
+	}
+	
+	public CiaoCamelLogMessage itkTrackingId(final Expression expression) {
+		return set(ITK_TRACKING_ID, expression);
+	}
+	
+	public CiaoCamelLogMessage distributionEnvelopeService(final String expression) {
+		return set(DISTRIBUTION_ENVELOPE_SERVICE, expression);
+	}
+	
+	public CiaoCamelLogMessage distributionEnvelopeService(final Expression expression) {
+		return set(DISTRIBUTION_ENVELOPE_SERVICE, expression);
+	}
 }

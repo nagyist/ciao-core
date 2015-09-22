@@ -17,4 +17,14 @@ final class CiaoLogParameters {
 	public static final String INTERACTION_ID = "InteractionId";
 	public static final String DOCUMENT_PROPERTIES = "DocumentProperties";
 	public static final String FILE_NAME = "FileName";
+	public static final String URI = "URI";
+	public static final String ACTION = "Action";
+	public static final String SERVICE = "Service";
+	public static final String ASID = "ASID";
+	public static final String ODS_CODE = "ODSCode";
+	public static final String KEY = "Key";
+	public static final String ADDRESS = "Address";
+	public static final String SOAP_ACTION = "SOAPAction";
+	public static final String ITK_TRACKING_ID = "ItkTrackingId";
+	public static final String DISTRIBUTION_ENVELOPE_SERVICE = "DistributionEnvelopeService";
 }

@@ -69,4 +69,44 @@ public class CiaoLogMessage extends ReusableLogMessage {
 	public CiaoLogMessage fileName(final Object value) {
 		return set(FILE_NAME, value);
 	}
+	
+	public CiaoLogMessage uri(final Object value) {
+		return set(URI, value);
+	}
+	
+	public CiaoLogMessage action(final Object value) {
+		return set(ACTION, value);
+	}
+	
+	public CiaoLogMessage service(final Object value) {
+		return set(SERVICE, value);
+	}
+	
+	public CiaoLogMessage asid(final Object value) {
+		return set(ASID, value);
+	}
+	
+	public CiaoLogMessage odsCode(final Object value) {
+		return set(ODS_CODE, value);
+	}
+	
+	public CiaoLogMessage key(final Object value) {
+		return set(KEY, value);
+	}
+	
+	public CiaoLogMessage address(final Object value) {
+		return set(ADDRESS, value);
+	}
+	
+	public CiaoLogMessage soapAction(final Object value) {
+		return set(SOAP_ACTION, value);
+	}
+	
+	public CiaoLogMessage itkTrackingId(final Object value) {
+		return set(ITK_TRACKING_ID, value);
+	}
+	
+	public CiaoLogMessage distributionEnvelopeService(final Object value) {
+		return set(DISTRIBUTION_ENVELOPE_SERVICE, value);
+	}
 }
