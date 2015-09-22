@@ -16,11 +16,13 @@ class CiaoCamelLogProcessor implements Processor {
 	private final CiaoLogger logger;
 	private final LoggingLevel level;
 	private final CamelLogMessage message;
+	private final boolean includeException;
 	
-	public CiaoCamelLogProcessor(final CiaoLogger logger, final LoggingLevel level, final CamelLogMessage message) {
+	public CiaoCamelLogProcessor(final CiaoLogger logger, final LoggingLevel level, final CamelLogMessage message, final boolean includeException) {
 		this.logger = logger;
 		this.level = level;
 		this.message = message;
+		this.includeException = includeException;
 	}
 	
 	@Override
@@ -50,7 +52,7 @@ class CiaoCamelLogProcessor implements Processor {
 	private void debug(final Exchange exchange) {
 		if (logger.isDebugEnabled()) {
 			final Exception exception = exchange.getException();
-			if (exception == null) {
+			if (exception == null || !includeException) {
 				logger.debug(message.toLogMessage(exchange));
 			} else {
 				logger.debug(message.toLogMessage(exchange), exception);
@@ -61,7 +63,7 @@ class CiaoCamelLogProcessor implements Processor {
 	private void error(final Exchange exchange) {
 		if (logger.isErrorEnabled()) {
 			final Exception exception = exchange.getException();
-			if (exception == null) {
+			if (exception == null || !includeException) {
 				logger.error(message.toLogMessage(exchange));
 			} else {
 				logger.error(message.toLogMessage(exchange), exception);
@@ -72,7 +74,7 @@ class CiaoCamelLogProcessor implements Processor {
 	private void info(final Exchange exchange) {
 		if (logger.isInfoEnabled()) {
 			final Exception exception = exchange.getException();
-			if (exception == null) {
+			if (exception == null || !includeException) {
 				logger.info(message.toLogMessage(exchange));
 			} else {
 				logger.info(message.toLogMessage(exchange), exception);
@@ -81,7 +83,7 @@ class CiaoCamelLogProcessor implements Processor {
 	}
 	
 	private void trace(final Exchange exchange) {
-		if (logger.isTraceEnabled()) {
+		if (logger.isTraceEnabled() || !includeException) {
 			final Exception exception = exchange.getException();
 			if (exception == null) {
 				logger.trace(message.toLogMessage(exchange));
@@ -92,7 +94,7 @@ class CiaoCamelLogProcessor implements Processor {
 	}
 	
 	private void warn(final Exchange exchange) {
-		if (logger.isWarnEnabled()) {
+		if (logger.isWarnEnabled() || !includeException) {
 			final Exception exception = exchange.getException();
 			if (exception == null) {
 				logger.warn(message.toLogMessage(exchange));

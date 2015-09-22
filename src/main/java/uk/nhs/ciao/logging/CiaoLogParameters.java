@@ -15,4 +15,6 @@ final class CiaoLogParameters {
 	public static final String RECEIVER_ASID = "ReceiverASID";
 	public static final String RECEIVER_ODS_CODE = "ReceiverODSCode";
 	public static final String INTERACTION_ID = "InteractionId";
+	public static final String DOCUMENT_PROPERTIES = "DocumentProperties";
+	public static final String FILE_NAME = "FileName";
 }

@@ -19,6 +19,10 @@ public class CiaoLogger {
 		this.logger = logger;
 	}
 	
+	public Logger getLogger() {
+		return logger;
+	}
+	
 	public boolean isDebugEnabled() {
 		return logger.isDebugEnabled();
 	}

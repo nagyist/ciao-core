@@ -61,4 +61,12 @@ public class CiaoLogMessage extends ReusableLogMessage {
 	public CiaoLogMessage interactionId(final Object value) {
 		return set(INTERACTION_ID, value);
 	}
+	
+	public CiaoLogMessage documentProperties(final Object value) {
+		return set(DOCUMENT_PROPERTIES, value);
+	}
+	
+	public CiaoLogMessage fileName(final Object value) {
+		return set(FILE_NAME, value);
+	}
 }

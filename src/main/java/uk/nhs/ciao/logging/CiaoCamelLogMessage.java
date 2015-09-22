@@ -115,4 +115,20 @@ public class CiaoCamelLogMessage extends CamelLogMessage {
 	public CiaoCamelLogMessage interactionId(final Expression expression) {
 		return set(INTERACTION_ID, expression);
 	}
+	
+	public CiaoCamelLogMessage documentProperties(final String expression) {
+		return set(DOCUMENT_PROPERTIES, expression);
+	}
+	
+	public CiaoCamelLogMessage documentProperties(final Expression expression) {
+		return set(DOCUMENT_PROPERTIES, expression);
+	}
+	
+	public CiaoCamelLogMessage fileName(final String expression) {
+		return set(FILE_NAME, expression);
+	}
+	
+	public CiaoCamelLogMessage fileName(final Expression expression) {
+		return set(FILE_NAME, expression);
+	}
 }

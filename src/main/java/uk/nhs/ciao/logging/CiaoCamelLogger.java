@@ -19,28 +19,61 @@ public class CiaoCamelLogger {
 		this.logger = logger;
 	}
 	
+	public CiaoLogger getCiaoLogger() {
+		return logger;
+	}
+	
+	public Logger getLogger() {
+		return logger.getLogger();
+	}
+	
 	public Processor log(final LoggingLevel level, final CamelLogMessage message) {
-		return new CiaoCamelLogProcessor(logger, level, message);
+		return log(level, ExceptionInclusion.INCLUDE, message);
+	}
+	
+	public Processor log(final LoggingLevel level, final ExceptionInclusion exceptionInclusion, final CamelLogMessage message) {
+		final boolean includeException = ExceptionInclusion.INCLUDE == exceptionInclusion;
+		return new CiaoCamelLogProcessor(logger, level, message, includeException);
 	}
 	
 	public Processor debug(final CamelLogMessage message) {
 		return log(LoggingLevel.DEBUG, message);
 	}
 	
+	public Processor debug(final ExceptionInclusion exceptionInclusion, final CamelLogMessage message) {
+		return log(LoggingLevel.DEBUG, exceptionInclusion, message);
+	}
+	
 	public Processor error(final CamelLogMessage message) {
 		return log(LoggingLevel.ERROR, message);
+	}
+	
+	public Processor error(final ExceptionInclusion exceptionInclusion, final CamelLogMessage message) {
+		return log(LoggingLevel.ERROR, exceptionInclusion, message);
 	}
 	
 	public Processor info(final CamelLogMessage message) {
 		return log(LoggingLevel.INFO, message);
 	}
 	
+	public Processor info(final ExceptionInclusion exceptionInclusion, final CamelLogMessage message) {
+		return log(LoggingLevel.INFO, exceptionInclusion, message);
+	}
+	
 	public Processor trace(final CamelLogMessage message) {
 		return log(LoggingLevel.TRACE, message);
 	}
 	
+	public Processor trace(final ExceptionInclusion exceptionInclusion, final CamelLogMessage message) {
+		return log(LoggingLevel.TRACE, exceptionInclusion, message);
+	}
+	
 	public Processor warn(final CamelLogMessage message) {
 		return log(LoggingLevel.WARN, message);
+	}
+	
+	public Processor warn(final ExceptionInclusion exceptionInclusion, final CamelLogMessage message) {
+		return log(LoggingLevel.WARN, exceptionInclusion, message);
 	}
 	
 	// static factory methods
@@ -59,5 +92,9 @@ public class CiaoCamelLogger {
 	
 	public static CiaoCamelLogger getLogger(final CiaoLogger logger) {
 		return new CiaoCamelLogger(logger);
+	}
+	
+	public enum ExceptionInclusion {
+		INCLUDE, OMIT;
 	}
 }
