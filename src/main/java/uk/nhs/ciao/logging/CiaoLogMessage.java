@@ -58,6 +58,10 @@ public class CiaoLogMessage extends ReusableLogMessage {
 		return set(RECEIVER_ODS_CODE, value);
 	}
 	
+	public CiaoLogMessage receiverMHSPartyKey(final Object value) {
+		return set(RECEIVER_MHS_PARTY_KEY, value);
+	}
+	
 	public CiaoLogMessage interactionId(final Object value) {
 		return set(INTERACTION_ID, value);
 	}
@@ -108,5 +112,13 @@ public class CiaoLogMessage extends ReusableLogMessage {
 	
 	public CiaoLogMessage distributionEnvelopeService(final Object value) {
 		return set(DISTRIBUTION_ENVELOPE_SERVICE, value);
+	}
+	
+	public CiaoLogMessage ebxmlMessageId(final Object value) {
+		return set(EBXML_MESSAGE_ID, value);
+	}
+	
+	public CiaoLogMessage ebxmlRefToMessageId(final Object value) {
+		return set(EBXML_REF_TO_MESSAGE_ID, value);
 	}
 }

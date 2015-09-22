@@ -14,6 +14,7 @@ final class CiaoLogParameters {
 	public static final String SENDER_ASID = "SenderASID";
 	public static final String RECEIVER_ASID = "ReceiverASID";
 	public static final String RECEIVER_ODS_CODE = "ReceiverODSCode";
+	public static final String RECEIVER_MHS_PARTY_KEY = "ReceiverMHSPartyKey";
 	public static final String INTERACTION_ID = "InteractionId";
 	public static final String DOCUMENT_PROPERTIES = "DocumentProperties";
 	public static final String FILE_NAME = "FileName";
@@ -27,4 +28,6 @@ final class CiaoLogParameters {
 	public static final String SOAP_ACTION = "SOAPAction";
 	public static final String ITK_TRACKING_ID = "ItkTrackingId";
 	public static final String DISTRIBUTION_ENVELOPE_SERVICE = "DistributionEnvelopeService";
+	public static final String EBXML_MESSAGE_ID = "EbxmlMessageId";
+	public static final String EBXML_REF_TO_MESSAGE_ID = "EbxmlRefToMessageId";
 }

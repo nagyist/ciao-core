@@ -108,6 +108,14 @@ public class CiaoCamelLogMessage extends CamelLogMessage {
 		return set(RECEIVER_ODS_CODE, expression);
 	}
 	
+	public CiaoCamelLogMessage receiverMHSPartyKey(final String expression) {
+		return set(RECEIVER_MHS_PARTY_KEY, expression);
+	}
+	
+	public CiaoCamelLogMessage receiverMHSPartyKey(final Expression expression) {
+		return set(RECEIVER_MHS_PARTY_KEY, expression);
+	}
+	
 	public CiaoCamelLogMessage interactionId(final String expression) {
 		return set(INTERACTION_ID, expression);
 	}
@@ -210,5 +218,21 @@ public class CiaoCamelLogMessage extends CamelLogMessage {
 	
 	public CiaoCamelLogMessage distributionEnvelopeService(final Expression expression) {
 		return set(DISTRIBUTION_ENVELOPE_SERVICE, expression);
+	}
+	
+	public CiaoCamelLogMessage ebxmlMessageId(final String expression) {
+		return set(EBXML_MESSAGE_ID, expression);
+	}
+	
+	public CiaoCamelLogMessage ebxmlMessageId(final Expression expression) {
+		return set(EBXML_MESSAGE_ID, expression);
+	}
+	
+	public CiaoCamelLogMessage ebxmlRefToMessageId(final String expression) {
+		return set(EBXML_REF_TO_MESSAGE_ID, expression);
+	}
+	
+	public CiaoCamelLogMessage ebxmlRefToMessageId(final Expression expression) {
+		return set(EBXML_REF_TO_MESSAGE_ID, expression);
 	}
 }
