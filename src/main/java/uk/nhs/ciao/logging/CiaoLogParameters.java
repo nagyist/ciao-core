@@ -6,6 +6,7 @@ final class CiaoLogParameters {
 	}
 	
 	public static final String EVENT_NAME = "EventName";
+	public static final String STATE = "State";
 	public static final String FROM_STATE = "FromState";
 	public static final String TO_STATE = "ToState";
 	public static final String INPUT_DIRECTORY = "InputDirectory";

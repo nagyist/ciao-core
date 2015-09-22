@@ -44,6 +44,14 @@ public class CiaoCamelLogMessage extends CamelLogMessage {
 		return set(EVENT_NAME, expression);
 	}
 	
+	public CiaoCamelLogMessage state(final String expression) {
+		return set(STATE, expression);
+	}
+	
+	public CiaoCamelLogMessage state(final Expression expression) {
+		return set(STATE, expression);
+	}
+	
 	public CiaoCamelLogMessage fromState(final String expression) {
 		return set(FROM_STATE, expression);
 	}

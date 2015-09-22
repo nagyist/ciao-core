@@ -26,6 +26,10 @@ public class CiaoLogMessage extends ReusableLogMessage {
 		return set(EVENT_NAME, value);
 	}
 	
+	public CiaoLogMessage state(final Object value) {
+		return set(STATE, value);
+	}
+	
 	public CiaoLogMessage fromState(final Object value) {
 		return set(FROM_STATE, value);
 	}
