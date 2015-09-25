@@ -12,9 +12,11 @@ package uk.nhs.ciao.logging;
  */
 class ReusableLogMessage implements LogMessage {
 	private final StringBuilder builder = new StringBuilder();
+	private boolean beforeProperties;
 	
 	void clear() {
 		this.builder.setLength(0);
+		this.beforeProperties = true;
 	}
 	
 	void reset(final CharSequence text) {
@@ -34,12 +36,18 @@ class ReusableLogMessage implements LogMessage {
 	 */
 	@Override
 	public ReusableLogMessage set(final String key, final Object value) {
-		// parameters are separated by a space
-		if (builder.length() > 0) {
-			builder.append(' ');
+		if (beforeProperties) {
+			if (builder.length() > 0) {
+				builder.append("' '");
+			}
+			
+			builder.append("Values -->");
 		}
 		
-		builder.append(key).append('=').append(value);
+		beforeProperties = false;
+		
+		// parameters are separated by a space
+		builder.append(' ').append(key).append('=').append(value);
 		return this;
 	}
 	
@@ -47,7 +55,7 @@ class ReusableLogMessage implements LogMessage {
 	 * {@inheritDoc}
 	 * <p>
 	 * The format of the message is:
-	 * "<code>{text}. {key1}={value1} {key2}={value2}...</code>"
+	 * "<code>{text}. Values --> {key1}={value1} {key2}={value2}...</code>"
 	 */
 	@Override
 	public String toString() {
