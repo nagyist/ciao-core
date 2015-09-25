@@ -38,7 +38,7 @@ class ReusableLogMessage implements LogMessage {
 	public ReusableLogMessage set(final String key, final Object value) {
 		if (beforeProperties) {
 			if (builder.length() > 0) {
-				builder.append("' '");
+				builder.append(' ');
 			}
 			
 			builder.append("Values -->");
