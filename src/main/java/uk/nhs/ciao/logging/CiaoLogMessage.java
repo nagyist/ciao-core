@@ -125,4 +125,8 @@ public class CiaoLogMessage extends ReusableLogMessage {
 	public CiaoLogMessage ebxmlRefToMessageId(final Object value) {
 		return set(EBXML_REF_TO_MESSAGE_ID, value);
 	}
+
+	public CiaoLogMessage workflowId(final Object value) {
+		return set(WORKFLOW_ID, value);
+	}
 }

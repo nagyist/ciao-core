@@ -2,7 +2,7 @@ package uk.nhs.ciao.logging;
 
 final class CiaoLogParameters {
 	private CiaoLogParameters() {
-		// Suppress defaullt constructor
+		// Suppress default constructor
 	}
 	
 	public static final String EVENT_NAME = "EventName";
@@ -31,4 +31,5 @@ final class CiaoLogParameters {
 	public static final String DISTRIBUTION_ENVELOPE_SERVICE = "DistributionEnvelopeService";
 	public static final String EBXML_MESSAGE_ID = "EbxmlMessageId";
 	public static final String EBXML_REF_TO_MESSAGE_ID = "EbxmlRefToMessageId";
+	public static final String WORKFLOW_ID = "WorkflowId";
 }

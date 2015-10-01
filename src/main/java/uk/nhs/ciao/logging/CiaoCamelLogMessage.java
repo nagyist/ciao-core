@@ -243,4 +243,12 @@ public class CiaoCamelLogMessage extends CamelLogMessage {
 	public CiaoCamelLogMessage ebxmlRefToMessageId(final Expression expression) {
 		return set(EBXML_REF_TO_MESSAGE_ID, expression);
 	}
+	
+	public CiaoCamelLogMessage workflowId(final String expression) {
+		return set(WORKFLOW_ID, expression);
+	}
+	
+	public CiaoCamelLogMessage workflowId(final Expression expression) {
+		return set(WORKFLOW_ID, expression);
+	}
 }
