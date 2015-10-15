@@ -54,7 +54,7 @@ public class URIBuilder {
 		return this;
 	}
 	
-	public URIBuilder replace(final String name, final String value) {
+	public URIBuilder set(final String name, final String value) {
 		queryParameters.put(name, value);
 		return this;
 	}
