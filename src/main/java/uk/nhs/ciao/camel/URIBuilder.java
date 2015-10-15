@@ -54,9 +54,33 @@ public class URIBuilder {
 		return this;
 	}
 	
+	public URIBuilder add(final String name, final boolean value) {
+		return add(name, String.valueOf(value));
+	}
+	
+	public URIBuilder add(final String name, final int value) {
+		return add(name, String.valueOf(value));
+	}
+	
+	public URIBuilder add(final String name, final long value) {
+		return add(name, String.valueOf(value));
+	}
+	
 	public URIBuilder set(final String name, final String value) {
 		queryParameters.put(name, value);
 		return this;
+	}
+	
+	public URIBuilder set(final String name, final boolean value) {
+		return set(name, String.valueOf(value));
+	}
+	
+	public URIBuilder set(final String name, final int value) {
+		return set(name, String.valueOf(value));
+	}
+	
+	public URIBuilder set(final String name, final long value) {
+		return set(name, String.valueOf(value));
 	}
 	
 	public URIBuilder remove(final String name) {
