@@ -251,4 +251,20 @@ public class CiaoCamelLogMessage extends CamelLogMessage {
 	public CiaoCamelLogMessage workflowId(final Expression expression) {
 		return set(WORKFLOW_ID, expression);
 	}
+	
+	public CiaoCamelLogMessage fromDTS(final String expression) {
+		return set(FROM_DTS, expression);
+	}
+	
+	public CiaoCamelLogMessage fromDTS(final Expression expression) {
+		return set(FROM_DTS, expression);
+	}
+	
+	public CiaoCamelLogMessage toDTS(final String expression) {
+		return set(TO_DTS, expression);
+	}
+	
+	public CiaoCamelLogMessage toDTS(final Expression expression) {
+		return set(TO_DTS, expression);
+	}
 }

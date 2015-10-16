@@ -129,4 +129,12 @@ public class CiaoLogMessage extends ReusableLogMessage {
 	public CiaoLogMessage workflowId(final Object value) {
 		return set(WORKFLOW_ID, value);
 	}
+	
+	public CiaoLogMessage fromDTS(final Object value) {
+		return set(FROM_DTS, value);
+	}
+	
+	public CiaoLogMessage toDTS(final Object value) {
+		return set(TO_DTS, value);
+	}
 }
