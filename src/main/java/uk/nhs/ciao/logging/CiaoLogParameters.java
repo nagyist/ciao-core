@@ -32,6 +32,6 @@ final class CiaoLogParameters {
 	public static final String EBXML_MESSAGE_ID = "EbxmlMessageId";
 	public static final String EBXML_REF_TO_MESSAGE_ID = "EbxmlRefToMessageId";
 	public static final String WORKFLOW_ID = "WorkflowId";
-	public static final String FROM_DTS = "ToDTS";
-	public static final String TO_DTS = "FromDTS";
+	public static final String FROM_DTS = "FromDTS";
+	public static final String TO_DTS = "ToDTS";
 }
