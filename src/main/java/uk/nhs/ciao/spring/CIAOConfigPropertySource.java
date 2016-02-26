@@ -30,12 +30,17 @@ public class CIAOConfigPropertySource extends EnumerablePropertySource<CIAOConfi
 	private static final Logger LOGGER = LoggerFactory.getLogger(CIAOConfigPropertySource.class);
 	private static final String[] NO_PROPERTY_NAMES = new String[0];
 
+	/**
+	 * @param name
+	 * @param source
+	 */
 	public CIAOConfigPropertySource(final String name, final CIAOConfig source) {
 		super(name, source);
 	}
 	
 	/**
 	 * Returns the backing CIAOConfig instance
+	 * @return CIAOConfig
 	 */
 	public CIAOConfig getCIAOConfig() {
 		return getSource();

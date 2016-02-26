@@ -16,7 +16,13 @@ import uk.nhs.ciao.exceptions.CIAOConfigurationException;
  * A factory to initialise CIAOConfig from a set of default properties
  */
 public class CIAOConfigFactory {
+	/**
+	 * CIP Name
+	 */
 	public static final String PROPERTY_CIP_NAME = "cip.name";
+	/**
+	 * CIP Version
+	 */
 	public static final String PROPERTY_CIP_VERSION = "cip.version";
 	
 	private static final Logger LOGGER = LoggerFactory.getLogger(CIAOConfigFactory.class);
@@ -25,11 +31,23 @@ public class CIAOConfigFactory {
 		// Suppress default constructor
 	}
 	
+	/**
+	 * @param resourcePath
+	 * @param args
+	 * @return CIAO Configuration object
+	 * @throws CIAOConfigurationException
+	 */
 	public static CIAOConfig getCIAOConfigFromClasspath(final String resourcePath, final String... args) throws CIAOConfigurationException {
 		final ClassPathResource resource = new ClassPathResource(resourcePath);
 		return getCIAOConfig(resource, args);
 	}
 	
+	/**
+	 * @param resource
+	 * @param args
+	 * @return CIAO Configuration object
+	 * @throws CIAOConfigurationException
+	 */
 	public static CIAOConfig getCIAOConfig(final Resource resource, final String... args) throws CIAOConfigurationException {
 		try {
 			final Properties defaultConfig = PropertiesLoaderUtils.loadProperties(resource);
@@ -39,6 +57,12 @@ public class CIAOConfigFactory {
 		}
 	}
 	
+	/**
+	 * @param defaultConfig
+	 * @param args
+	 * @return CIAO Configuration object
+	 * @throws CIAOConfigurationException
+	 */
 	public static CIAOConfig getCIAOConfig(final Properties defaultConfig, final String... args) throws CIAOConfigurationException {
 		final String name = defaultConfig.getProperty(PROPERTY_CIP_NAME);
 		final String version = defaultConfig.getProperty(PROPERTY_CIP_VERSION);

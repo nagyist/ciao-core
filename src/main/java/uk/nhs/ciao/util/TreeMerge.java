@@ -10,6 +10,10 @@ import java.util.Map.Entry;
 public class TreeMerge {
 	// Perhaps some configuration options could be added (i.e. whether to merge lists, overwrite defaults etc)
 	
+	/**
+	 * @param source
+	 * @param destination
+	 */
 	public void mergeInto(final Map<String, ?> source, final Map<String, Object> destination) {
 		for (final Entry<String, ?> entry: source.entrySet()) {
 			final Object destinationValue = destination.get(entry.getKey());

@@ -5,8 +5,6 @@ import org.apache.camel.Exchange;
 import org.apache.camel.component.properties.PropertiesComponent;
 import org.apache.camel.impl.DefaultCamelContext;
 import org.apache.camel.util.jndi.JndiContext;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import uk.nhs.ciao.properties.CiaoPropertyResolver;
 
@@ -17,8 +15,7 @@ import uk.nhs.ciao.properties.CiaoPropertyResolver;
  */
 public abstract class RunCIP {
 	
-	private static Logger logger = LoggerFactory.getLogger(RunCIP.class);
-	
+	@SuppressWarnings("javadoc")
 	public CamelContext init(String[] args, String defaultConfigFile) throws Exception {
 		try {
 			// Create a new JNDI context as our camel registry

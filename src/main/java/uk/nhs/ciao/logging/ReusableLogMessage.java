@@ -10,6 +10,7 @@ package uk.nhs.ciao.logging;
  * <p>
  * Package scoped so that implementation details to not leak into the main API.
  */
+@SuppressWarnings("javadoc")
 class ReusableLogMessage implements LogMessage {
 	private final StringBuilder builder = new StringBuilder();
 	private boolean beforeProperties;

@@ -11,6 +11,7 @@ import uk.nhs.ciao.RunCIP;
  * This is a sample CIP implementation for the purposes of unit testing.
  * @author Adam Hatherly
  */
+@SuppressWarnings("deprecation")
 public class CIP extends RunCIP {
 	
 	/**

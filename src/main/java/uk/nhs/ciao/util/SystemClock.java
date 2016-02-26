@@ -8,6 +8,7 @@ public class SystemClock extends Clock {
 	
 	/**
 	 * Gets an instance of {@link SystemClock}
+	 * @return SystemClock
 	 */
 	public static SystemClock getInstance() {
 		return INSTANCE;

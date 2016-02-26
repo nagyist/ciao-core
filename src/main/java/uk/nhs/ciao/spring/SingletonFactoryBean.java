@@ -17,6 +17,8 @@ public class SingletonFactoryBean<T> implements FactoryBean<T> {
 	
 	/**
 	 * Constructs a new factory bean to supply the specified instance
+	 * @param objectType 
+	 * @param object 
 	 */
 	public SingletonFactoryBean(final Class<T> objectType, final T object) {
 		this.objectType = objectType;
@@ -50,6 +52,9 @@ public class SingletonFactoryBean<T> implements FactoryBean<T> {
 	/**
 	 * Utility method to create a spring bean definition which will always return the
 	 * specified instance
+	 * @param objectType 
+	 * @param object 
+	 * @return BeanDefinition
 	 */
 	public static <T> BeanDefinition defineSingletonBean(final Class<T> objectType, final T object) {
 		final RootBeanDefinition def = new RootBeanDefinition(SingletonFactoryBean.class);

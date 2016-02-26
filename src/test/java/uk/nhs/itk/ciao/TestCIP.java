@@ -26,6 +26,7 @@ public class TestCIP extends CamelTestSupport {
 		CIP cip = new CIP();
 		String[] args = new String[] {};
 		String defaultConfigFile = "testCIP.properties";
+		@SuppressWarnings("deprecation")
 		CamelContext context = cip.init(args, defaultConfigFile);
 		return context;
 	}

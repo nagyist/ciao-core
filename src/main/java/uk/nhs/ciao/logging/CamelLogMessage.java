@@ -15,6 +15,9 @@ public class CamelLogMessage {
 	private final CharSequence text;
 	private final Map<String, Expression> parameters;
 	
+	/**
+	 * @param text
+	 */
 	public CamelLogMessage(final CharSequence text) {
 		this.text = text;
 		this.parameters = new LinkedHashMap<String, Expression>();
@@ -22,6 +25,9 @@ public class CamelLogMessage {
 	
 	/**
 	 * Sets the named parameter using the specified expression
+	 * @param name Parameter name
+	 * @param expression Expression
+	 * @return this
 	 */
 	public CamelLogMessage set(final String name, final Expression expression) {
 		parameters.put(name, expression);
@@ -30,6 +36,9 @@ public class CamelLogMessage {
 	
 	/**
 	 * Sets the named parameter using a simple expression
+	 * @param name Parameter name
+	 * @param expression Expression
+	 * @return this
 	 */
 	public CamelLogMessage set(final String name, final String expression) {
 		return set(name, ExpressionBuilder.simpleExpression(expression));

@@ -32,6 +32,12 @@ public final class CiaoPropertyResolver
 		return cipConfig.getAllProperties();
 	}
 	
+	/**
+	 * @param defaultConfigFileName
+	 * @param args
+	 * @return PropertiesComponent
+	 * @throws CIAOConfigurationException
+	 */
 	public static PropertiesComponent createPropertiesComponent(String defaultConfigFileName, String[] args) throws CIAOConfigurationException {
 		if (cipConfig != null) {
 			throw new CIAOConfigurationException("Attempting to initialise CIP configuration more than once - this is not allowed");
@@ -76,7 +82,7 @@ public final class CiaoPropertyResolver
 	/**
 	 * Convenience method to directly access a config value from CIP code
 	 * @param key
-	 * @return
+	 * @return Property value
 	 * @throws CIAOConfigurationException 
 	 */
 	public static String getConfigValue(String key) throws CIAOConfigurationException {

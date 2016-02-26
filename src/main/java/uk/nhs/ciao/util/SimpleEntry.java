@@ -16,6 +16,8 @@ public class SimpleEntry<K, V> implements Entry<K, V> {
 	
 	/**
 	 * Constructs a new entry
+	 * @param key 
+	 * @param value 
 	 */
 	public SimpleEntry(final K key, final V value) {
 		this.key = key;
@@ -24,6 +26,7 @@ public class SimpleEntry<K, V> implements Entry<K, V> {
 	
 	/**
 	 * Constructs a new entry
+	 * @param entry 
 	 */
 	public SimpleEntry(final Entry<? extends K, ? extends V> entry) {
 		this.key = entry.getKey();
@@ -95,6 +98,9 @@ public class SimpleEntry<K, V> implements Entry<K, V> {
 	
 	/**
 	 * Factory method
+	 * @param key 
+	 * @param value 
+	 * @return SimpleEntry
 	 */
 	public static <K, V> SimpleEntry<K, V> valueOf(final K key, final V value) {
 		return new SimpleEntry<K, V>(key, value);

@@ -18,6 +18,10 @@ package uk.nhs.ciao;
 
 import org.apache.camel.builder.RouteBuilder;
 
+/**
+ * Abstract class for all CIPs to extend
+ * @author Adam Hatherly
+ */
 public abstract class CIPRoutes extends RouteBuilder {
     public void configure() {
     	

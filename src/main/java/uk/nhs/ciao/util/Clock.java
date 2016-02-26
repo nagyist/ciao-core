@@ -10,11 +10,13 @@ import java.util.Date;
 public abstract class Clock {
 	/**
 	 * Gets the current time in milliseconds
+	 * @return current time
 	 */
 	public abstract long getMillis();
 
 	/**
 	 * Gets the current date as a {@link Date}
+	 * @return current date
 	 */
 	public Date getDate() {
 		return new Date(getMillis());

@@ -33,6 +33,7 @@ public class CamelApplication {
 	
 	/**
 	 * Gets the CIAOConfig from the specified camel context
+	 * @param context Camel Context
 	 * 
 	 * @return The configuration stored in the context's registry
 	 * @see CiaoParentApplicationContextFactory#PROPERTY_CIAO_CONFIG
@@ -43,6 +44,7 @@ public class CamelApplication {
 	
 	/**
 	 * Gets the CIAOConfig from the specified camel registry
+	 * @param registry Camel Registry
 	 * 
 	 * @return The configuration stored in the specified registry
 	 * @see CiaoParentApplicationContextFactory#PROPERTY_CIAO_CONFIG
@@ -58,6 +60,8 @@ public class CamelApplication {
 
 	/**
 	 * Creates a new application backed by the specified CIAO configuration
+	 * @param config CIAO config object
+	 * @param arguments 
 	 */
 	public CamelApplication(final CIAOConfig config, final String... arguments) {
 		super();
@@ -71,7 +75,7 @@ public class CamelApplication {
 	 * 
 	 * @param defaultConfigPath The location of the default configuration properties
 	 * 			on the classpath
-	 * @param args The application arguments
+	 * @param arguments 
 	 * @throws CIAOConfigurationException If the application could not be configured
 	 * @see CIAOConfigFactory
 	 */
@@ -84,6 +88,7 @@ public class CamelApplication {
 	
 	/**
 	 * The config used by this application
+	 * @return CIAO config object
 	 */
 	public CIAOConfig getCIAOConfig() {
 		return config;
@@ -91,6 +96,7 @@ public class CamelApplication {
 	
 	/**
 	 * The application arguments
+	 * @return Arguments
 	 */
 	public String[] getArguments() {
 		return arguments;
@@ -98,6 +104,7 @@ public class CamelApplication {
 	
 	/**
 	 * The path of the spring application context config for this application
+	 * @return Spring context URI
 	 * 
 	 * @see #DEFAULT_APPLICATION_CONTEXT_URI
 	 */

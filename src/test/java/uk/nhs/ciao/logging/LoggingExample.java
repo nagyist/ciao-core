@@ -13,6 +13,7 @@ import org.apache.camel.impl.DefaultProducerTemplate;
 
 import uk.nhs.ciao.camel.CamelUtils;
 
+@SuppressWarnings("javadoc")
 public class LoggingExample {
 	private static final CiaoLogger LOGGER = CiaoLogger.getLogger(LoggingExample.class);
 	private static final CiaoCamelLogger CAMEL_LOGGER = CiaoCamelLogger.getLogger(LoggingExample.class);

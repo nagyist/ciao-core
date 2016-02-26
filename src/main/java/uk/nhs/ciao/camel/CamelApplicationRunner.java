@@ -21,7 +21,6 @@ import uk.nhs.ciao.exceptions.CIAOConfigurationException;
  * application context (specified by the application)
  * 
  * @see Main
- * @see CamelApplication#createParentApplicationContext()
  */
 public class CamelApplicationRunner extends Main {
 	private static final Logger LOGGER = LoggerFactory.getLogger(CamelApplicationRunner.class);
@@ -64,6 +63,7 @@ public class CamelApplicationRunner extends Main {
 	 * @param application The application to run
 	 * @param executorService The executorService to use when running the application
 	 * @return The async execution associated with the running application
+	 * @throws Exception 
 	 */
 	public static AsyncExecution runApplication(final CamelApplication application,
 			final ExecutorService executorService) throws Exception {
@@ -139,6 +139,7 @@ public class CamelApplicationRunner extends Main {
 		
 		/**
 		 * The application runner
+		 * @return runner
 		 */
 		public CamelApplicationRunner getRunner() {
 			return runner;
@@ -150,6 +151,7 @@ public class CamelApplicationRunner extends Main {
 		 * The future can be examined to see whether the application is running,
 		 * wait for termination, or retrieve application excceptions that were thrown
 		 * during the run
+		 * @return future
 		 */
 		public Future<Void> getFuture() {
 			return future;
@@ -212,6 +214,8 @@ public class CamelApplicationRunner extends Main {
 
 	/**
 	 * Creates a new main to run the specified application
+	 * @param application Camel application
+	 * @param lifecycleListener Lifecycle listener
 	 */
 	public CamelApplicationRunner(final CamelApplication application, final LifecycleListener lifecycleListener) {
 		super();
@@ -223,6 +227,7 @@ public class CamelApplicationRunner extends Main {
 	
 	/**
 	 * Creates a new main to run the specified application
+	 * @param application Camel Application
 	 */
 	public CamelApplicationRunner(final CamelApplication application) {
 		this(application, new LifecycleListener());
@@ -230,6 +235,7 @@ public class CamelApplicationRunner extends Main {
 	
 	/**
 	 * The contained application
+	 * @return Camel Application
 	 */
 	public CamelApplication getApplication() {
 		return application;

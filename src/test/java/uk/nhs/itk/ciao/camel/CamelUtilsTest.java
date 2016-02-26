@@ -10,6 +10,7 @@ import uk.nhs.ciao.camel.CamelUtils;
  * Unit tests for {@link CamelUtils}
  */
 public class CamelUtilsTest {
+	@SuppressWarnings("javadoc")
 	@Test
 	public void testStopServiceQuietly() throws Exception {
 		final Service service = Mockito.mock(Service.class);
@@ -17,12 +18,14 @@ public class CamelUtilsTest {
 		Mockito.verify(service).stop();
 	}
 	
+	@SuppressWarnings("javadoc")
 	@Test
 	public void testStopNullServiceQuietly() {
 		final Service service = null;
 		CamelUtils.stopQuietly(service);
 	}
 	
+	@SuppressWarnings("javadoc")
 	@Test
 	public void testStopServiceQuietlyTrapsException() throws Exception {
 		final Service service = Mockito.mock(Service.class);
@@ -31,6 +34,7 @@ public class CamelUtilsTest {
 		Mockito.verify(service).stop();
 	}
 	
+	@SuppressWarnings("javadoc")
 	@Test
 	public void testStopServicesQuietly() throws Exception {
 		final Service service1 = Mockito.mock(Service.class);
@@ -40,12 +44,14 @@ public class CamelUtilsTest {
 		Mockito.verify(service2).stop();
 	}
 	
+	@SuppressWarnings("javadoc")
 	@Test
 	public void testStopNullServicesQuietly() {
 		final Service[] services = null;
 		CamelUtils.stopQuietly(services);
 	}
 	
+	@SuppressWarnings("javadoc")
 	@Test
 	public void testStopServicesQuietlyTrapsException() throws Exception {
 		final Service service1 = Mockito.mock(Service.class);

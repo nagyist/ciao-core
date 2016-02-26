@@ -1,7 +1,5 @@
 package uk.nhs.itk.ciao;
 
-import org.apache.camel.PropertyInject;
-
 import uk.nhs.ciao.CIPRoutes;
 
 /**

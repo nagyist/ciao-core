@@ -10,6 +10,7 @@ public abstract class BaseRouteBuilder extends RouteBuilder {
 	
 	/**
 	 * Path prefix added to all generated internal route URLs (to ensure uniqueness)
+	 * @return Internal route prefix value
 	 */
 	public String getInternalRoutePrefix() {
 		return internalRoutePrefix;
@@ -17,6 +18,7 @@ public abstract class BaseRouteBuilder extends RouteBuilder {
 	
 	/**
 	 * Path prefix added to all generated internal route URLs (to ensure uniqueness)
+	 * @param internalRoutePrefix Internal route prefix value
 	 */
 	public void setInternalRoutePrefix(final String internalRoutePrefix) {
 		this.internalRoutePrefix = internalRoutePrefix;

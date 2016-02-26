@@ -30,11 +30,20 @@ import uk.nhs.ciao.exceptions.CIAOConfigurationException;
  * would otherwise be impossible).
  */
 public class CiaoParentApplicationContextFactory {
+	/**
+	 * Property key for the backing CIAOConfig instance
+	 */
 	public static final String PROPERTY_CIAO_CONFIG = "ciaoConfig";
+	/**
+	 * Property key for the Properties instance
+	 */
 	public static final String PROPERTY_CIAO_PROPERTIES = "ciaoProperties";
 	
 	private final CIAOConfig config;
 	
+	/**
+	 * @param config
+	 */
 	public CiaoParentApplicationContextFactory(final CIAOConfig config) {
 		this.config = config;
 	}
